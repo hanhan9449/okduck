@@ -1,0 +1,24 @@
+
+name: Deploy to GitHub Pages via angular-cli-ghpages
+
+on: [push]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Prepare and deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        npm install
+        npx ng deploy --base-href=https://hanhan9449.github.io/okduck --name="hanhan9449" --email=haannn@qq.com
